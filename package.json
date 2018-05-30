@@ -1,0 +1,38 @@
+{
+  "name": "test-verichic",
+  "version": "1.0.19",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "http-server -o /dist/release/index.html"
+  },
+  "author": "Alejandro Camps Guerrero",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^1.1.0",
+    "@material-ui/icons": "^1.1.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "typescript": "^2.8.3"
+  },
+  "devDependencies": {
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "browserify": "^13.3.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.4.0",
+    "gulp-typescript": "^3.1.4",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.8",
+    "gulp-zip": "^4.0.0",
+    "mold-source-map": "^0.4.0",
+    "tsify": "^3.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.8.0"
+  }
+}
