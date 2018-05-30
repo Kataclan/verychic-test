@@ -10,3 +10,48 @@ html, body, #app {
     width: 100%;
     max-width: 958px;
 }
+.card:nth-of-type(1), .card:nth-of-type(2){
+    width: 462px;
+    height: 301px;
+}
+.card:nth-of-type(3){
+    width: 958px;
+    height: 492px;
+    margin-top: 30px;
+}
+.card-top{
+    height: 70%;
+}
+.card-top .hurry{
+    background:rgba(0, 0, 0, 0.70);
+    color: white;
+    padding: 3px 5px;
+    font-size: 10px;
+}
+.hurry > a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.card-bottom{
+    height: 30%;
+}
+.card-info, .card-actions > div{
+    padding: 5px 10px;
+}
+
+.card-info > span:first-child{
+    font-size: 14px;
+}
+.card-info > span{
+    font-size: 10px;
+}
+
+.action-price > span:first-child{
+    font-size: 30px;
+    font-weight: bold;
+    color: #52B0C9;
+}
+.action-price > span{
+    font-size: 10px;
+}

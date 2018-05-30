@@ -27,20 +27,20 @@ var paths = {
     },
     out: {
         folder: "dist/",
-        debug: "dist/debug/",
-        release: "dist/release/",
+        dev: "dist/dev/",
+        prod: "dist/prod/",
         jsFileName: "app.js",
         cssFileName: "style.css",
     }
 };
 //#region [ www ]
-gulp.task("www-debug", function () {
+gulp.task("www-dev", function () {
     return gulp.src(paths.in.wwwFiles, { base: paths.in.wwwFolder })
-        .pipe(gulp.dest(paths.out.debug));
+        .pipe(gulp.dest(paths.out.dev));
 });
-gulp.task("www-release", function () {
+gulp.task("www-prod", function () {
     return gulp.src(paths.in.wwwFiles, { base: paths.in.wwwFolder })
-        .pipe(gulp.dest(paths.out.release));
+        .pipe(gulp.dest(paths.out.prod));
 });
 //#endregion
 
@@ -49,22 +49,22 @@ gulp.task("clean", function () {
     return gulp.src(paths.out.folder)
         .pipe(clean());
 });
-gulp.task("debug", ["www-debug", "css-debug"], function () {
+gulp.task("build-dev", ["www-dev", "css-dev"], function () {
     return browserify({
         debug: true,
         entries: paths.in.code
     })
         .plugin(tsify)
         .bundle()
-        .pipe(mold.transformSourcesRelativeTo(paths.out.debug))
+        .pipe(mold.transformSourcesRelativeTo(paths.out.dev))
         .pipe(source(paths.out.jsFileName))
         .pipe(buffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(paths.out.debug))
-        .pipe(size({ title: paths.out.debug + paths.out.jsFileName }));
+        .pipe(gulp.dest(paths.out.dev))
+        .pipe(size({ title: paths.out.dev + paths.out.jsFileName }));
 });
-gulp.task("release", ["www-release", "css-release"], function () {
+gulp.task("build-prod", ["www-prod", "css-prod"], function () {
     return browserify({
         entries: paths.in.code,
     })
@@ -73,25 +73,25 @@ gulp.task("release", ["www-release", "css-release"], function () {
         .pipe(source(paths.out.jsFileName))
         .pipe(buffer())
         .pipe(uglify())
-        .pipe(gulp.dest(paths.out.release))
-        .pipe(size({ title: paths.out.release + paths.out.jsFileName }));
+        .pipe(gulp.dest(paths.out.prod))
+        .pipe(size({ title: paths.out.prod + paths.out.jsFileName }));
 });
 //#endregion
 
 //#region [ style ]
-gulp.task("css-debug", function () {
+gulp.task("css-dev", function () {
     return gulp
         .src(paths.in.style)
         .pipe(concat(paths.out.cssFileName))
-        .pipe(gulp.dest(paths.out.debug))
-        .pipe(size({ title: paths.out.debug + paths.out.cssFileName }));
+        .pipe(gulp.dest(paths.out.dev))
+        .pipe(size({ title: paths.out.dev + paths.out.cssFileName }));
 });
-gulp.task("css-release", function () {
+gulp.task("css-prod", function () {
     return gulp
         .src(paths.in.style)
         .pipe(cleanCSS())
         .pipe(concat(paths.out.cssFileName))
-        .pipe(gulp.dest(paths.out.release))
-        .pipe(size({ title: paths.out.release + paths.out.cssFileName }))
+        .pipe(gulp.dest(paths.out.prod))
+        .pipe(size({ title: paths.out.prod + paths.out.cssFileName }))
 });
 //#endregion
